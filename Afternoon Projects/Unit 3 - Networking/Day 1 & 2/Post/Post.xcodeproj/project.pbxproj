@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		86EE5FC32301F26500315466 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE5FC22301F26500315466 /* Post.swift */; };
+		86EE5FC62301F44B00315466 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE5FC52301F44B00315466 /* PostController.swift */; };
+		86EE5FC823020DD400315466 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE5FC723020DD400315466 /* MainViewController.swift */; };
 		B755BB7A219DE7EC00A9E085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B755BB79219DE7EC00A9E085 /* AppDelegate.swift */; };
 		B755BB7F219DE7EC00A9E085 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B755BB7D219DE7EC00A9E085 /* Main.storyboard */; };
 		B755BB81219DE7ED00A9E085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B755BB80219DE7ED00A9E085 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 
 /* Begin PBXFileReference section */
 		86EE5FC22301F26500315466 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		86EE5FC52301F44B00315466 /* PostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		86EE5FC723020DD400315466 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B755BB76219DE7EC00A9E085 /* Post.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Post.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B755BB79219DE7EC00A9E085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B755BB7E219DE7EC00A9E085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,6 +66,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		86EE5FC923020DD700315466 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				86EE5FC723020DD400315466 /* MainViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		86EE5FCA2302162D00315466 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				86EE5FC52301F44B00315466 /* PostController.swift */,
+			);
+			name = "Model Controllers";
+			sourceTree = "<group>";
+		};
 		B755BB6D219DE7EC00A9E085 = {
 			isa = PBXGroup;
 			children = (
@@ -82,8 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				86EE5FC12301F21B00315466 /* Storyboards */,
+				86EE5FC923020DD700315466 /* Views */,
 				86EE5FC02301F21400315466 /* Resources */,
 				86EE5FC42301F26800315466 /* Models */,
+				86EE5FCA2302162D00315466 /* Model Controllers */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -161,6 +183,8 @@
 			files = (
 				B755BB7A219DE7EC00A9E085 /* AppDelegate.swift in Sources */,
 				86EE5FC32301F26500315466 /* Post.swift in Sources */,
+				86EE5FC62301F44B00315466 /* PostController.swift in Sources */,
+				86EE5FC823020DD400315466 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Post/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Post/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,7 +348,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Post/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Post/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
