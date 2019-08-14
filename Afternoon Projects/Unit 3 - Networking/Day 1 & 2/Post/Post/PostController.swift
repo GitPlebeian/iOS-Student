@@ -10,13 +10,16 @@ import Foundation
 
 class PostController {
     
-    var baseURL = URL(string: "http://devmtn-posts.firebaseio.com/posts")
+    let baseURL = URL(string: "http://devmtn-posts.firebaseio.com/posts")
     var posts: [Post] = []
     
+    
+    // MARK: - Custom Funcitons
+    
     func fetchPosts(completion: @escaping ()-> Void) {
-        baseURL?.appendPathExtension("json")
         guard let baseURL = baseURL else {return}
-        var request = URLRequest(url: baseURL)
+        let builtURL = baseURL.appendingPathExtension("json")
+        var request = URLRequest(url: builtURL)
         request.httpBody = nil
         request.httpMethod = "GET"
         print(baseURL)
@@ -36,9 +39,49 @@ class PostController {
                 posts.sort(by: {$0.timestamp > $1.timestamp})
                 self.posts = posts
                 completion()
-                return
             } catch let error {
                 print("Error at \(#function) \(error) \(error.localizedDescription)")
+                completion()
+                return
+            }
+        }.resume()
+    }
+    
+    func addNewPostWith(username: String, text: String, completion: @escaping () -> Void) {
+        
+        let post = Post(text: text, username: username)
+  
+        var postData: Data
+        
+        do {
+            let encoder = JSONEncoder()
+            postData = try encoder.encode(post)
+        } catch let error {
+            print("Error in side of \(#function) \(error) --- \(error.localizedDescription)")
+            completion()
+            return
+        }
+        
+        guard let postEndpoint = baseURL else {completion(); return}
+
+        let builtURL = postEndpoint.appendingPathExtension("json")
+        var request = URLRequest(url: builtURL)
+        
+        request.httpMethod = "POST"
+        request.httpBody = postData
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("Error in side of \(#function) \(error) --- \(error.localizedDescription)")
+                completion()
+                return
+            }
+            guard let data = data else {completion();return}
+            
+            let unwrappedData = String(data: data, encoding: .utf8)
+            
+            print(unwrappedData ?? "NO DATA")
+            self.fetchPosts {
                 completion()
                 return
             }

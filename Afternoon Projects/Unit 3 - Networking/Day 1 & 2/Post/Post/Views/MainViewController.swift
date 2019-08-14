@@ -15,6 +15,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var postTableView: UITableView!
     
+    
     // MARK: - Properteis
     
     var postController = PostController()
@@ -22,7 +23,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         refreshControl.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
+        
         postTableView.refreshControl = refreshControl
         postTableView.estimatedRowHeight = 45
         postTableView.rowHeight = UITableView.automaticDimension
@@ -35,7 +42,44 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    // MARK: - Actions
+    
+    @IBAction func addPostButtonTapped(_ sender: Any) {
+        presentNewPostAlert()
+    }
+    
+    
     // MARK: - Custom Functions
+    
+    func presentNewPostAlert() {
+        let alertController = UIAlertController(title: "New Post", message: "Enter Information", preferredStyle: .alert)
+        alertController.addTextField { (usernameTextField) in
+            
+        }
+        alertController.addTextField { (messageTextField) in
+            
+        }
+        alertController.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action) in
+            guard let username = alertController.textFields?[0].text, let message = alertController.textFields?[1].text else {return}
+            if username.isEmpty || message.isEmpty {
+                self.presentMissingInfo()
+                return
+            }
+            self.postController.addNewPostWith(username: username, text: message, completion: {
+                DispatchQueue.main.async {
+                    self.postTableView.reloadData()
+                }
+            })
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentMissingInfo() {
+        let alertController = UIAlertController(title: "Please Fill Out Fields", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     @objc func refreshControlPulled() {
         postController.fetchPosts {

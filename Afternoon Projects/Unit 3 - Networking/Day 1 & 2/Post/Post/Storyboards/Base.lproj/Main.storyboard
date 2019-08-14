@@ -62,7 +62,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="son boi BOI" id="x6h-5B-TAJ"/>
+                    <navigationItem key="navigationItem" title="son boi BOI" id="x6h-5B-TAJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="low-tt-0pz">
+                            <connections>
+                                <action selector="addPostButtonTapped:" destination="BYZ-38-t0r" id="7MO-72-dmP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="postTableView" destination="cFa-pT-vgy" id="Y0f-pY-Fz6"/>
                     </connections>

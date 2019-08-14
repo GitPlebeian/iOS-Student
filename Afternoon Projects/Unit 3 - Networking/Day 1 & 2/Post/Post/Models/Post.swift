@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Post: Decodable {
+class Post: Codable {
     
     let text: String
     let timestamp: TimeInterval
